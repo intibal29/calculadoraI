@@ -6,34 +6,52 @@ import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 import javafx.scene.control.ToggleGroup;
 
+/**
+ * La clase {@code CalculadoraController} maneja la lógica de la calculadora simple,
+ * permitiendo realizar operaciones básicas como suma, resta, multiplicación y división
+ * a través de una interfaz gráfica controlada por FXML.
+ */
 public class CalculadoraController {
 
+    /** Campo de texto para ingresar el primer número */
     @FXML
     private TextField primernumero;
 
+    /** Campo de texto para ingresar el segundo número */
     @FXML
     private TextField segundonumero;
 
+    /** RadioButton para seleccionar la operación de suma */
     @FXML
     private RadioButton suma;
 
+    /** RadioButton para seleccionar la operación de resta */
     @FXML
     private RadioButton resta;
 
+    /** RadioButton para seleccionar la operación de multiplicación */
     @FXML
     private RadioButton multiplicacion;
 
+    /** RadioButton para seleccionar la operación de división */
     @FXML
     private RadioButton division;
 
+    /** Campo de texto para mostrar el resultado de la operación */
     @FXML
     private TextField resultado;
 
+    /** Agrupa los RadioButtons para que solo se pueda seleccionar una operación a la vez */
     private ToggleGroup operaciones;
 
+    /**
+     * Método de inicialización que se ejecuta cuando el controlador es cargado.
+     * <p>
+     * Agrupa los RadioButtons {@code suma}, {@code resta}, {@code multiplicacion} y {@code division}
+     * en un {@link ToggleGroup} para garantizar que solo se seleccione una operación a la vez.
+     */
     @FXML
     public void initialize() {
-        // Agrupar los RadioButtons para que solo uno pueda estar seleccionado a la vez
         operaciones = new ToggleGroup();
         suma.setToggleGroup(operaciones);
         resta.setToggleGroup(operaciones);
@@ -41,16 +59,24 @@ public class CalculadoraController {
         division.setToggleGroup(operaciones);
     }
 
-    // Este método se ejecutará cuando el usuario seleccione una operación
+    /**
+     * Método que se ejecuta cuando se selecciona una operación y se presiona el botón de calcular.
+     * <p>
+     * Realiza la operación seleccionada (suma, resta, multiplicación o división)
+     * utilizando los valores ingresados en {@code primernumero} y {@code segundonumero}.
+     * <p>
+     * Si se selecciona división y el segundo número es cero, muestra un mensaje de error en el campo {@code resultado}.
+     * Si los números ingresados no son válidos, también muestra un mensaje de error.
+     *
+     * @param event el evento que dispara el cálculo
+     */
     @FXML
     public void calcular(ActionEvent event) {
         try {
-            // Obtener los números ingresados por el usuario
             double num1 = Double.parseDouble(primernumero.getText());
             double num2 = Double.parseDouble(segundonumero.getText());
             double res = 0;
 
-            // Determinar cuál operación se seleccionó y realizar el cálculo
             if (suma.isSelected()) {
                 res = num1 + num2;
             } else if (resta.isSelected()) {
@@ -58,7 +84,6 @@ public class CalculadoraController {
             } else if (multiplicacion.isSelected()) {
                 res = num1 * num2;
             } else if (division.isSelected()) {
-                // Manejar la división por cero
                 if (num2 != 0) {
                     res = num1 / num2;
                 } else {
@@ -67,7 +92,6 @@ public class CalculadoraController {
                 }
             }
 
-            // Mostrar el resultado
             resultado.setText(String.valueOf(res));
         } catch (NumberFormatException e) {
             resultado.setText("Error: Entrada inválida");
