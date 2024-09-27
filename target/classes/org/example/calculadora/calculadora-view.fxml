@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.calculadora.CalculadoraController">
+    <children>
+        <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                    <children>
+                        <Text layoutX="47.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Escribe el primer número" />
+                        <Text layoutX="47.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Escribe el segundo número" />
+                        <TextField fx:id="primernumero" layoutX="259.0" layoutY="19.0" />
+                        <TextField fx:id="segundonumero" layoutX="259.0" layoutY="52.0" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                    <children>
+                        <RadioButton fx:id="suma" layoutX="21.0" layoutY="39.0" mnemonicParsing="false" text="Suma" onAction="#calcular"/>
+                        <RadioButton fx:id="resta" layoutX="137.0" layoutY="39.0" mnemonicParsing="false" text="Resta" onAction="#calcular"/>
+                        <RadioButton fx:id="multiplicacion" layoutX="230.0" layoutY="39.0" mnemonicParsing="false" text="Multiplicación" onAction="#calcular"/>
+                        <RadioButton fx:id="division" layoutX="383.0" layoutY="39.0" mnemonicParsing="false" text="División" onAction="#calcular"/>
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+        <Pane prefHeight="200.0" prefWidth="200.0">
+            <children>
+                <TextField fx:id="resultado" layoutX="235.0" layoutY="81.0" editable="false"/>
+                <Text layoutX="61.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Resultado" />
+            </children>
+        </Pane>
+    </children>
+</VBox>
